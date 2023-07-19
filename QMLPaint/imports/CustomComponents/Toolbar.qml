@@ -10,6 +10,7 @@ Rectangle
     width: parent.width
     height: Constants.toolbar_height
     color: Constants.toolbar_backgroundColor
+    border.color: "#ffffff"
 
     // Defaul button
     Component

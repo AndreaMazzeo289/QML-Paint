@@ -13,13 +13,11 @@ Window {
     visible: true
     title: "QMLPaint"
 
-    /*
-    Text {
-        text: qsTr("Hello QMLPaint")
-        anchors.centerIn: parent
-        font.family: Constants.font.family
+    Rectangle
+    {
+        anchors.fill: parent
+        color: Constants.backgroundColor
     }
-    */
 
     Toolbar
     {
@@ -41,6 +39,24 @@ Window {
         anchors.top: toolbar.bottom
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+    }
+
+    Canvas
+    {
+        id: canvas
+        anchors.top: secondary_toolbar.bottom
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: sidebar.left
+        anchors.margins: 10 * Constants.marginUnit
+    }
+
+    LateralMenu
+    {
+        id: lateralMenu
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
     }
 }
 

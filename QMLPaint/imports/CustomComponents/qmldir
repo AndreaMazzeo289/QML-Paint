@@ -2,4 +2,7 @@ Module CustomComponents
 Toolbar 1.0 Toolbar.qml
 SecondaryToolbar 1.0 SecondaryToolbar.qml
 Sidebar 1.0 Sidebar.qml
+Canvas 1.0 Canvas.qml
 CustomText 1.0 CustomText.qml
+CustomSlider 1.0 CustomSlider.qml
+LateralMenu 1.0 LateralMenu.qml
