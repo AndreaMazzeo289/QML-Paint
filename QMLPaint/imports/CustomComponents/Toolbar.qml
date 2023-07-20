@@ -9,7 +9,7 @@ Rectangle
 {
     width: parent.width
     height: Constants.toolbar_height
-    color: Constants.toolbar_backgroundColor
+    color: "#ffffff"
     border.color: "#ffffff"
 
     // Defaul button

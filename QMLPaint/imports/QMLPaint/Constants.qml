@@ -67,7 +67,7 @@ QtObject {
     readonly property color lateralMenu_hoveredItem: "#ABACB2"
     readonly property color lateralMenu_textColor: "#222255"
     readonly property color lateralMenu_divisorColor: "#B0B1B2"
-    readonly property int lateralMenu_heightItem: 40
+    readonly property int lateralMenu_heightItem: 50
     readonly property color lateralMenu_overlayColor: "#000000"
     readonly property int lateralMenu_overlayOpacity: 50
 
