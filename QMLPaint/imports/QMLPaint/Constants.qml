@@ -44,9 +44,9 @@ QtObject {
     readonly property color secondaryToolbar_backgroundColor: "#EAEBED"
 
     //-----------------------------------------------------------------------//
-    // Secondary Toolbar
+    // Sidebar
     //-----------------------------------------------------------------------//
-    readonly property int sidebar_width: 250
+    readonly property int sidebar_width: 300
     readonly property color sidebar_backgroundColor: "#F0F2F3"
     readonly property int slider_height: 100
     readonly property int slider_labelHeight: 40

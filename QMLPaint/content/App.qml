@@ -55,6 +55,7 @@ Window {
     {
         id: lateralMenu
         anchors.fill: parent
+        visible: false
     }
 }
 
