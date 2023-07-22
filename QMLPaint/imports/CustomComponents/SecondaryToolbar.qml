@@ -8,7 +8,6 @@ import CustomComponents
 Rectangle
 {
     height: Constants.secondaryToolbar_height
-    width: 1920
     color: Constants.secondaryToolbar_backgroundColor
 
     property int zoomValue: 0
@@ -17,43 +16,20 @@ Rectangle
     {
         anchors.fill: parent
 
-        Rectangle
+        IconButton
         {
             id: select_button
 
-            Layout.preferredHeight: parent.height
+            labelColor: Constants.lateralMenu_textColor
+            orientation: "Horizontal"
+            iconSize: 24
             Layout.preferredWidth: 115
-
-            gradient: Gradient
-            {
-                orientation: Gradient.Horizontal
-                GradientStop { position: 0.0; color: "#9AACBA" }
-                GradientStop { position: 1.0; color: "#D4D2F0" }
-            }
-
-            Image
-            {
-                id: icon
-
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left: parent.left
-                anchors.leftMargin: 3 * Constants.marginUnit
-
-                source: "../../content/images/lateralMenu/cursor.png"
-                height: 16
-                width: 16
-            }
-
-            CustomText
-            {
-                id: label
-
-                anchors.right: parent.right
-                anchors.rightMargin: 5 * Constants.marginUnit
-                text: "Select"
-                height: parent.height
-                verticalAlignment: Text.AlignVCenter
-            }
+            Layout.preferredHeight: parent.height
+            gradientLeft: Constants.secondaryToolbar_gradientLeft
+            gradientRight: Constants.secondaryToolbar_gradientRight
+            gradientHover: Constants.secondaryToolbar_gradientHover
+            imageSource: "../../content/images/lateralMenu/cursor.png"
+            labelText: "Select"
         }
 
         Item { Layout.fillWidth: true }

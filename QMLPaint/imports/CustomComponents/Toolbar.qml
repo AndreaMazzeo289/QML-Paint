@@ -14,46 +14,20 @@ Rectangle
     // Defaul button
     Component
     {
-        id: toolbar_item
+        id: toolbar_item_component
 
-        Rectangle
+        IconButton
         {
-            height: Constants.toolbar_height
+            id: button
+
+            labelColor: Constants.toolbar_textColor
+            orientation: "Vertical"
+            iconSize: 24
             width: Constants.toolbar_height
-
-            color: "transparent"
-
-            property alias source: icon.source
-            property alias text: iconText.text
-
-            ColumnLayout
-            {
-                id: inner_layout
-                anchors.centerIn: parent
-                spacing: 0
-
-                Item { Layout.fillHeight: true }
-
-                Image
-                {
-                    id: icon
-                    Layout.preferredHeight: Constants.toolbar_iconSize
-                    Layout.preferredWidth: Constants.toolbar_iconSize
-                    fillMode: Image.PreserveAspectFit
-                    Layout.alignment: Qt.AlignHCenter
-                }
-
-                Item { Layout.preferredHeight: Constants.marginUnit }
-
-                CustomText
-                {
-                    id: iconText
-                    Layout.alignment: Qt.AlignHCenter
-                    color: Constants.toolbar_textColor
-                }
-
-                Item { Layout.fillHeight: true }
-            }
+            height: Constants.toolbar_height
+            gradientLeft: Constants.toolbar_gradientLeft
+            gradientRight: Constants.toolbar_gradientRight
+            gradientHover: Constants.toolbar_gradientHover
         }
     }
 
@@ -67,11 +41,11 @@ Rectangle
         // 0. Menu
         Loader
         {
-            sourceComponent: toolbar_item
+            sourceComponent: toolbar_item_component
             onLoaded:
             {
-                item.source = "../../content/images/toolbar/menu.png"
-                item.text = "Menu"
+                item.imageSource = "../../content/images/toolbar/menu.png"
+                item.labelText = "Menu"
             }
         }
 
@@ -80,55 +54,55 @@ Rectangle
         // 1. Tools
         Loader
         {
-            sourceComponent: toolbar_item
+            sourceComponent: toolbar_item_component
             onLoaded:
             {
-                item.source = "../../content/images/toolbar/tools.png"
-                item.text = "Tools"
+                item.imageSource = "../../content/images/toolbar/tools.png"
+                item.labelText = "Tools"
             }
         }
 
         // 2. Shapes
         Loader
         {
-            sourceComponent: toolbar_item
+            sourceComponent: toolbar_item_component
             onLoaded:
             {
-                item.source = "../../content/images/toolbar/shape.png"
-                item.text = "Shapes"
+                item.imageSource = "../../content/images/toolbar/shape.png"
+                item.labelText = "Shapes"
             }
         }
 
         // 3. Text
         Loader
         {
-            sourceComponent: toolbar_item
+            sourceComponent: toolbar_item_component
             onLoaded:
             {
-                item.source = "../../content/images/toolbar/text.png"
-                item.text = "Text"
+                item.imageSource = "../../content/images/toolbar/text.png"
+                item.labelText = "Text"
             }
         }
 
         // 4. Effects
         Loader
         {
-            sourceComponent: toolbar_item
+            sourceComponent: toolbar_item_component
             onLoaded:
             {
-                item.source = "../../content/images/toolbar/effects.png"
-                item.text = "Effects"
+                item.imageSource = "../../content/images/toolbar/effects.png"
+                item.labelText = "Effects"
             }
         }
 
         // 5. Frame
         Loader
         {
-            sourceComponent: toolbar_item
+            sourceComponent: toolbar_item_component
             onLoaded:
             {
-                item.source = "../../content/images/toolbar/frame.png"
-                item.text = "Frame"
+                item.imageSource = "../../content/images/toolbar/frame.png"
+                item.labelText = "Frame"
             }
         }
 
@@ -137,22 +111,22 @@ Rectangle
         // 6. Undo
         Loader
         {
-            sourceComponent: toolbar_item
+            sourceComponent: toolbar_item_component
             onLoaded:
             {
-                item.source = "../../content/images/toolbar/undo.png"
-                item.text = "Undo"
+                item.imageSource = "../../content/images/toolbar/undo.png"
+                item.labelText = "Undo"
             }
         }
 
         // 7. Redo
         Loader
         {
-            sourceComponent: toolbar_item
+            sourceComponent: toolbar_item_component
             onLoaded:
             {
-                item.source = "../../content/images/toolbar/redo.png"
-                item.text = "Redo"
+                item.imageSource = "../../content/images/toolbar/redo.png"
+                item.labelText = "Redo"
             }
         }
     }

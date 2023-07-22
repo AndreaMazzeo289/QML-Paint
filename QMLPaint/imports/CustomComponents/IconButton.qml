@@ -16,8 +16,10 @@ Rectangle
     property color labelColor
     property color gradientLeft
     property color gradientRight
-    property color gradientLeftStop
-    property color gradientRightStop
+    property color gradientHover
+
+    property color __gradientLeft
+    property color __gradientRight
 
     Component
     {
@@ -58,12 +60,12 @@ Rectangle
         GradientStop
         {
             position: 0.0
-            color: button_root.gradientLeft
+            color: button_root.__gradientLeft
         }
         GradientStop
         {
             position: 1.0
-            color: button_root.gradientRight
+            color: button_root.__gradientRight
         }
     }
 
@@ -114,7 +116,6 @@ Rectangle
         onClicked:
         {
             button_root.state = "selected"
-            console.log("Clicked: " + button_root.state + ", color: " + button_root.gradientLeft)
         }
         onEntered:
         {
@@ -122,8 +123,6 @@ Rectangle
             {
                 button_root.state = "hovered"
             }
-
-            console.log("Entered: " + button_root.state + ", color: " + button_root.gradientLeft)
         }
         onExited:
         {
@@ -131,7 +130,6 @@ Rectangle
             {
                 button_root.state = "default";
             }
-            console.log("Exited: " + button_root.state + ", color: " + button_root.gradientLeft)
         }
     }
 
@@ -144,8 +142,8 @@ Rectangle
             {
                 target: button_root;
                 color: "white"
-                gradientLeft: button_root.gradientLeftStop
-                gradientRight: button_root.gradientRightStop
+                __gradientLeft: button_root.gradientLeft
+                __gradientRight: button_root.gradientRight
             }
         },
         State
@@ -156,8 +154,8 @@ Rectangle
                 target: button_root;
                 color: "#000000"
                 opacity: 0.3
-                gradientLeft: "#80000000"
-                gradientRight: "#80000000"
+                __gradientLeft: button_root.gradientHover
+                __gradientRight: button_root.gradientHover
             }
         },
         State
@@ -167,8 +165,8 @@ Rectangle
             {
                 target: button_root;
                 color: "transparent"
-                gradientLeft: "transparent"
-                gradientRight: "transparent"
+                __gradientLeft: "transparent"
+                __gradientRight: "transparent"
             }
         }
     ]

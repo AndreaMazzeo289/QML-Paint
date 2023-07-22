@@ -10,6 +10,70 @@ Rectangle
     width: Constants.sidebar_width
     color: Constants.sidebar_backgroundColor
 
+    function darkerColor(color)
+    {
+        print ("hue: " + color.hue)
+        print ("saturation: " + color.saturation)
+        print ("lightness: " + color.lightness)
+        print ("alpha: " + color.alpha)
+
+        var hslColor = Qt.hsla(color.hue, color.saturation, color.lightness * 0.5, color.alpha);
+        return hslColor;
+    }
+
+    function lighterColor(color)
+    {
+        var hslColor = Qt.hsla(color.hue, color.saturation, color.lightness * 1.5, color.alpha);
+        return hslColor;
+    }
+
+    Component
+    {
+        id: color_sector_button
+
+        Rectangle
+        {
+            id: component_root
+
+            property color gradientLow
+            property color gradientHigh
+
+            anchors.fill: parent
+
+            Rectangle
+            {
+                id: hover_selector
+
+                anchors.fill: parent
+                anchors.margins: 1
+
+                color: "transparent"
+                border.color: "white"
+                border.width: 1
+                visible: false
+            }
+
+            MouseArea
+            {
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: hover_selector.visible = true
+                onExited: hover_selector.visible = false
+                onClicked:
+                {
+                    let darker_color = darkerColor(component_root.color)
+                    let lighter_color = lighterColor(component_root.color)
+
+                    console.log("darker: " + darker_color)
+                    console.log("lighter: " + lighter_color)
+
+                    color_picker_preview.gradientLow = darker_color
+                    color_picker_preview.gradientHigh = lighter_color
+                }
+            }
+        }
+    }
+
     ColumnLayout
     {
         anchors.fill: parent
@@ -56,6 +120,24 @@ Rectangle
                 id: color_picker_preview
                 Layout.preferredHeight: 50
                 Layout.fillWidth: true
+
+                property color gradientLow
+                property color gradientHigh
+
+                gradient: Gradient
+                {
+                    orientation: Gradient.Vertical
+                    GradientStop
+                    {
+                        position: 0.0
+                        color: color_picker_preview.gradientLow
+                    }
+                    GradientStop
+                    {
+                        position: 1.0
+                        color: color_picker_preview.gradientHigh
+                    }
+                }
             }
 
             Rectangle
@@ -90,117 +172,136 @@ Rectangle
             columns: 6
 
             // First row
-            Rectangle
+            Loader
             {
-                color: "#ffffff"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_white
             }
-            Rectangle
+            Loader
             {
-                color: "#9d9d9d"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_lightgray
             }
-            Rectangle
+            Loader
             {
-                color: "#3f3f3f"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_darkgray
             }
-            Rectangle
+            Loader
             {
-                color: "#000000"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_black
             }
-            Rectangle
+            Loader
             {
-                color: "#6e0000"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_darkred
             }
-            Rectangle
+            Loader
             {
-                color: "#ff0000"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_lightred
             }
 
+
             // Second row
-            Rectangle
+            Loader
             {
-                color: "#ff5e00"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_orange
             }
-            Rectangle
+            Loader
             {
-                color: "#fea000"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_darkyellow
             }
-            Rectangle
+            Loader
             {
-                color: "#f9e857"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_beidge
             }
-            Rectangle
+            Loader
             {
-                color: "#fffe00"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_yellow
             }
-            Rectangle
+            Loader
             {
-                color: "#b7ff01"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_limegreen
             }
-            Rectangle
+            Loader
             {
-                color: "#22cc00"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_green
             }
 
             // Third row
-            Rectangle
+            Loader
             {
-                color: "#00ffe1"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_cyan
             }
-            Rectangle
+            Loader
             {
-                color: "#00c6f6"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_blue
             }
-            Rectangle
+            Loader
             {
-                color: "#0076ff"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_purple
             }
-            Rectangle
+            Loader
             {
-                color: "#c400ff"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_magenta
             }
-            Rectangle
+            Loader
             {
-                color: "#ff879d"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_pink
             }
-            Rectangle
+            Loader
             {
-                color: "#682900"
-                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
+                Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
+                sourceComponent: color_sector_button
+                onLoaded: item.color = Constants.sidebar_brown
             }
         }
 
