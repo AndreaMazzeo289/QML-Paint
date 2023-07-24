@@ -62,24 +62,24 @@ QtObject {
 
     // Default colors
     //----------------//
-    readonly property color sidebar_white: Qt.rgba(1, 1, 1, 1)
-    readonly property color sidebar_lightgray: Qt.rgba(0.7647, 0.7647, 0.7647, 1)
-    readonly property color sidebar_darkgray: Qt.rgba(0.3450, 0.3450, 0.3450, 1)
-    readonly property color sidebar_black: Qt.rgba(0, 0, 0, 1)
-    readonly property color sidebar_darkred: Qt.rgba(0.5333, 0, 0.1058, 1)
-    readonly property color sidebar_lightred: Qt.rgba(0.9254, 0.1098, 0.1411, 1)
-    readonly property color sidebar_orange: Qt.rgba(1, 0.4901, 0.1529, 1)
-    readonly property color sidebar_darkyellow: Qt.rgba(1, 0.7921, 0.0941, 1)
-    readonly property color sidebar_beidge: Qt.rgba(0.9921, 0.9254, 0.6509, 1)
-    readonly property color sidebar_yellow: Qt.rgba(1, 0.9490, 0, 1)
-    readonly property color sidebar_limegreen: Qt.rgba(0.7686, 1, 0.0549, 1)
-    readonly property color sidebar_green: Qt.rgba(0.0549, 0.8196, 0.2705, 1)
-    readonly property var sidebar_cyan: Qt.hsla(0.6941, 1, 0.78, 1) //Qt.rgba(0.5490, 1, 0.9843, 1)
-    readonly property color sidebar_blue: Qt.rgba(0, 0.6588, 0.9529, 1)
-    readonly property color sidebar_purple: Qt.rgba(0.2470, 0.2823, 0.8, 1)
-    readonly property color sidebar_magenta: Qt.rgba(0.7215, 0.2392, 0.7294, 1)
-    readonly property color sidebar_pink: Qt.rgba(1, 0.6823, 0.7843, 1)
-    readonly property color sidebar_brown: Qt.rgba(0.7254, 0.4784, 0.3372, 1)
+    readonly property color sidebar_white: "#FFFFFF";
+    readonly property color sidebar_lightgray: "#C3C3C3";
+    readonly property color sidebar_darkgray: "#585858";
+    readonly property color sidebar_black: "#000000";
+    readonly property color sidebar_darkred: "#88001B";
+    readonly property color sidebar_red: "#EC1C24";
+    readonly property color sidebar_orange: "#FF7F27";
+    readonly property color sidebar_darkyellow: "#FFCA18";
+    readonly property color sidebar_beidge: "#FDECA6";
+    readonly property color sidebar_yellow: "#FFF200";
+    readonly property color sidebar_limegreen: "#C4FF0E";
+    readonly property color sidebar_green: "#0ED145";
+    readonly property color sidebar_cyan: "#8CFFFB";
+    readonly property color sidebar_blue: "#00A8F3";
+    readonly property color sidebar_purple: "#3F48CC";
+    readonly property color sidebar_magenta: "#B83DBA";
+    readonly property color sidebar_pink: "#FFAEC8";
+    readonly property color sidebar_brown: "#B97A56";
 
     //-----------------------------------------------------------------------//
     // Colors

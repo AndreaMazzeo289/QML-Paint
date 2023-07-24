@@ -10,23 +10,6 @@ Rectangle
     width: Constants.sidebar_width
     color: Constants.sidebar_backgroundColor
 
-    function darkerColor(color)
-    {
-        print ("hue: " + color.hue)
-        print ("saturation: " + color.saturation)
-        print ("lightness: " + color.lightness)
-        print ("alpha: " + color.alpha)
-
-        var hslColor = Qt.hsla(color.hue, color.saturation, color.lightness * 0.5, color.alpha);
-        return hslColor;
-    }
-
-    function lighterColor(color)
-    {
-        var hslColor = Qt.hsla(color.hue, color.saturation, color.lightness * 1.5, color.alpha);
-        return hslColor;
-    }
-
     Component
     {
         id: color_sector_button
@@ -35,8 +18,7 @@ Rectangle
         {
             id: component_root
 
-            property color gradientLow
-            property color gradientHigh
+            property color gradientStart
 
             anchors.fill: parent
 
@@ -57,18 +39,21 @@ Rectangle
             {
                 anchors.fill: parent
                 hoverEnabled: true
-                onEntered: hover_selector.visible = true
-                onExited: hover_selector.visible = false
+                onEntered:
+                {
+                    hover_selector.visible = true
+                    border.color = "#000000"
+                    border.width = 1
+                }
+                onExited:
+                {
+                    hover_selector.visible = false
+                    border.width = 0
+                }
                 onClicked:
                 {
-                    let darker_color = darkerColor(component_root.color)
-                    let lighter_color = lighterColor(component_root.color)
-
-                    console.log("darker: " + darker_color)
-                    console.log("lighter: " + lighter_color)
-
-                    color_picker_preview.gradientLow = darker_color
-                    color_picker_preview.gradientHigh = lighter_color
+                    color_picker_preview.gradientLow = component_root.color
+                    color_picker_preview.gradientHigh = component_root.gradientStart
                 }
             }
         }
@@ -177,44 +162,67 @@ Rectangle
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_white
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_white
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
             Loader
             {
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_lightgray
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_lightgray
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
             Loader
             {
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_darkgray
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_darkgray
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
             Loader
             {
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_black
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_black
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
             Loader
             {
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_darkred
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_darkred
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
             Loader
             {
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_lightred
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_red
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
-
 
             // Second row
             Loader
@@ -222,42 +230,66 @@ Rectangle
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_orange
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_orange
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
             Loader
             {
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_darkyellow
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_darkyellow
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
             Loader
             {
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_beidge
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_beidge
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
             Loader
             {
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_yellow
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_yellow
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
             Loader
             {
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_limegreen
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_limegreen
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
             Loader
             {
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_green
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_green
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
 
             // Third row
@@ -266,42 +298,66 @@ Rectangle
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_cyan
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_cyan
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
             Loader
             {
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_blue
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_blue
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
             Loader
             {
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_purple
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_purple
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
             Loader
             {
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_magenta
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_magenta
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
             Loader
             {
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_pink
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_pink
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
             Loader
             {
                 Layout.preferredHeight: color_selector_grid.width / color_selector_grid.columns
                 Layout.preferredWidth: color_selector_grid.width / color_selector_grid.columns
                 sourceComponent: color_sector_button
-                onLoaded: item.color = Constants.sidebar_brown
+                onLoaded:
+                {
+                    item.color = Constants.sidebar_brown
+                    item.gradientStart = Qt.lighter(item.color, 0.6)
+                }
             }
         }
 
