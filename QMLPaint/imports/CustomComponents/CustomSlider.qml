@@ -79,6 +79,17 @@ Item
             height: 3
         }
 
+        Rectangle
+        {
+            id: background_left
+            anchors.verticalCenter: slider.verticalCenter
+            anchors.left: parent.left
+            radius: height / 2
+            color: Constants.blue
+            height: 3
+            width: handle.x
+        }
+
         handle: Rectangle
         {
             width: 6
@@ -91,6 +102,8 @@ Item
         {
             sliderValue = value
             slider_value_box.text = isPercentageType ? value + "%" : value + "px"
+            handle.x = (slider.width - handle.width) * (value - slider.from) / (slider.to - slider.from)
+            background_left.width = handle.x
         }
     }
 }
