@@ -71,6 +71,8 @@ Item
         stepSize: 1
         value: sliderValue
 
+        property var sliderPosition : handle.x
+
         background: Rectangle
         {
             anchors.verticalCenter: slider.verticalCenter
@@ -87,7 +89,7 @@ Item
             radius: height / 2
             color: Constants.blue
             height: 3
-            width: handle.x
+            width: slider.sliderPosition
         }
 
         handle: Rectangle
@@ -102,8 +104,8 @@ Item
         {
             sliderValue = value
             slider_value_box.text = isPercentageType ? value + "%" : value + "px"
-            handle.x = (slider.width - handle.width) * (value - slider.from) / (slider.to - slider.from)
-            background_left.width = handle.x
+            slider.handle.x = (slider.width - slider.handle.width) * (value - slider.from) / (slider.to - slider.from)
+            slider.sliderPosition = slider.handle.x
         }
     }
 }

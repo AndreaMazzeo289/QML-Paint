@@ -12,9 +12,67 @@ Rectangle
 
     property int zoomValue: 0
 
+    Component
+    {
+        id: zoom_control_button
+
+        Item
+        {
+            anchors.fill: parent
+
+            property alias source : button_icon.source
+
+            Image
+            {
+                id: button_icon
+
+                anchors.centerIn: parent
+                height: 16
+                width: 16
+                source: "../../content/images/lateralMenu/minus.png"
+            }
+
+            Rectangle
+            {
+                id: button_background
+
+                anchors.fill: parent
+                color: "transparent"
+                opacity: 1
+            }
+
+            MouseArea
+            {
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered:
+                {
+                    button_background.color = "#000000"
+                    button_background.opacity = 0.2
+                }
+                onExited:
+                {
+                    button_background.color = "transparent"
+                    button_background.opacity = 1
+                }
+                onPressed:
+                {
+                    button_background.color = "#000000"
+                    button_background.opacity = 0.4
+                }
+                onReleased:
+                {
+                    button_background.color = "#000000"
+                    button_background.opacity = 0.2
+                }
+            }
+        }
+    }
+
     RowLayout
     {
         anchors.fill: parent
+        spacing: 0
 
         IconButton
         {
@@ -34,19 +92,17 @@ Rectangle
 
         Item { Layout.fillWidth: true }
 
-        Item
+        Loader
         {
+            id: minus_button
+
             Layout.preferredHeight: Constants.secondaryToolbar_height
             Layout.preferredWidth: Constants.secondaryToolbar_height
 
-            Image
+            sourceComponent: zoom_control_button
+            onLoaded:
             {
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-
-                height: 16
-                width: 16
-                source: "../../content/images/lateralMenu/minus.png"
+                item.source = "../../content/images/lateralMenu/minus.png"
             }
         }
 
@@ -56,10 +112,14 @@ Rectangle
 
             Layout.preferredWidth: 150
             Layout.preferredHeight: Constants.slider_barHeight
+            Layout.leftMargin: 2 * Constants.marginUnit
+            Layout.rightMargin: 2 * Constants.marginUnit
             from: 0
             to: 100
             stepSize: 1
             value: zoomValue
+
+            property var sliderPosition : handle.x
 
             background: Rectangle
             {
@@ -77,7 +137,7 @@ Rectangle
                 radius: height / 2
                 color: Constants.blue
                 height: 3
-                width: handle.x
+                width: slider.sliderPosition
             }
 
             handle: Rectangle
@@ -92,24 +152,22 @@ Rectangle
             {
                 zoomValue = value
                 slider_value_box.text = value + "%"
-                handle.x = (slider.width - handle.width) * (value - slider.from) / (slider.to - slider.from)
-                background_left.width = handle.x
+                slider.handle.x = (slider.width - slider.handle.width) * (value - slider.from) / (slider.to - slider.from)
+                slider.sliderPosition = slider.handle.x
             }
         }
 
-        Item
+        Loader
         {
+            id: plus_button
+
             Layout.preferredHeight: Constants.secondaryToolbar_height
             Layout.preferredWidth: Constants.secondaryToolbar_height
 
-            Image
+            sourceComponent: zoom_control_button
+            onLoaded:
             {
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-
-                height: 16
-                width: 16
-                source: "../../content/images/lateralMenu/plus.png"
+                item.source = "../../content/images/lateralMenu/plus.png"
             }
         }
 
