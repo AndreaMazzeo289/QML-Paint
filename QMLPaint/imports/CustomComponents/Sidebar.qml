@@ -136,11 +136,39 @@ Rectangle
 
                 Image
                 {
+                    id: picker_icon
                     anchors.centerIn: parent
                     height: 20
                     width: 20
                     source: "../../content/images/toolbar/color-picker.png"
                     fillMode: Image.PreserveAspectFit
+                }
+
+                MouseArea
+                {
+                    anchors.fill: parent
+                    hoverEnabled: true
+
+                    // The ColorOverlay component is not available for free in Qt6, only available with the BSD license
+                    onEntered:
+                    {
+                        picker_icon.source = "../../content/images/toolbar/color-picker-hovered.png"
+                        color_picker_button.color = "#FFFFFF"
+                    }
+                    onExited:
+                    {
+                        picker_icon.source = "../../content/images/toolbar/color-picker.png"
+                        color_picker_button.color = "transparent";
+                    }
+                    onPressed:
+                    {
+                        color_picker_button.color = Qt.rgba(0, 0, 0, .1)
+                    }
+                    onReleased:
+                    {
+                        color_picker_button.color = "transparent";
+                        color_picker_button.color.opacity = 1;
+                    }
                 }
             }
         }

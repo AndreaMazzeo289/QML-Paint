@@ -7,9 +7,13 @@ import CustomComponents
 // Toolbar.qml
 Rectangle
 {
+    id: toolbar_root
+
     width: parent.width
     height: Constants.toolbar_height
     color: Constants.toolbar_backgroundColor
+
+    signal menuButtonPressed()
 
     // Defaul button
     Component
@@ -46,6 +50,7 @@ Rectangle
             {
                 item.imageSource = "../../content/images/toolbar/menu.png"
                 item.labelText = "Menu"
+                item.iconButtonClicked.connect(function() { toolbar_root.menuButtonPressed() });
             }
         }
 

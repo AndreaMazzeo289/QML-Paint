@@ -13,6 +13,8 @@ Window {
     visible: true
     title: "QMLPaint"
 
+    property bool isLateralMenuOpened: false
+
     Rectangle
     {
         anchors.fill: parent
@@ -55,7 +57,27 @@ Window {
     {
         id: lateralMenu
         anchors.fill: parent
-        visible: false
+        visible: isLateralMenuOpened
+        x: isLateralMenuOpened ? parent.width - lateralMenu.width : parent.width
+
+        transitions: Transition
+        {
+            NumberAnimation
+            {
+                property: "x"
+                duration: 250
+                easing.type: Easing.InOutQuad
+            }
+        }
+    }
+
+    Connections
+    {
+        target: toolbar
+        onMenuButtonPressed: () =>
+        {
+            isLateralMenuOpened = !isLateralMenuOpened;
+        }
     }
 }
 

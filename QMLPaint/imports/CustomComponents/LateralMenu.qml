@@ -119,6 +119,7 @@ Item
 
         }
     }
+    /*
     Rectangle
     {
         color: "#000000"
@@ -128,4 +129,5 @@ Item
         anchors.bottom: parent.bottom
         opacity: 0.5
     }
+    */
 }

@@ -21,6 +21,8 @@ Rectangle
     property color __gradientLeft
     property color __gradientRight
 
+    signal iconButtonClicked()
+
     Component
     {
         id: vertical_layout
@@ -116,6 +118,7 @@ Rectangle
         onClicked:
         {
             button_root.state = "selected"
+            button_root.iconButtonClicked()
         }
         onEntered:
         {
