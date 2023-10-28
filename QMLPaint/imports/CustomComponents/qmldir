@@ -7,4 +7,5 @@ CustomText 1.0 CustomText.qml
 CustomSlider 1.0 CustomSlider.qml
 LateralMenu 1.0 LateralMenu.qml
 LateralMenuItem 1.0 LateralMenuItem.qml
-IconButton 1.0 IconButton.qml
+GradientIconButton 1.0 GradientIconButton.qml
+SimpleIconButton 1.0 SimpleIconButton.qml

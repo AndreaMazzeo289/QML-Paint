@@ -14,13 +14,23 @@ Rectangle
     color: Constants.toolbar_backgroundColor
 
     signal menuButtonPressed()
+    signal toolSelected(string toolName)
+
+    function disableButtonsExcept(enabledButton)
+    {
+        for(let i = 2; i < toolbar_container.children.length - 3; i++)
+        {
+            if (toolbar_container.children[i].item.labelText !== enabledButton)
+                toolbar_container.children[i].item.state = "default";
+        }
+    }
 
     // Defaul button
     Component
     {
-        id: toolbar_item_component
+        id: toolbar_gradientButton_component
 
-        IconButton
+        GradientIconButton
         {
             id: button
 
@@ -35,6 +45,22 @@ Rectangle
         }
     }
 
+    Component
+    {
+        id: toolbar_simpleButton_component
+
+        SimpleIconButton
+        {
+            id: button
+
+            labelColor: Constants.toolbar_textColor
+            orientation: "Vertical"
+            iconSize: 24
+            width: Constants.toolbar_height
+            height: Constants.toolbar_height
+        }
+    }
+
     RowLayout
     {
         id: toolbar_container
@@ -45,7 +71,7 @@ Rectangle
         // 0. Menu
         Loader
         {
-            sourceComponent: toolbar_item_component
+            sourceComponent: toolbar_simpleButton_component
             onLoaded:
             {
                 item.imageSource = "../../content/images/toolbar/menu.png"
@@ -59,55 +85,60 @@ Rectangle
         // 1. Tools
         Loader
         {
-            sourceComponent: toolbar_item_component
+            sourceComponent: toolbar_gradientButton_component
             onLoaded:
             {
                 item.imageSource = "../../content/images/toolbar/tools.png"
                 item.labelText = "Tools"
+                item.iconButtonClicked.connect(function() { toolbar_root.toolSelected(item.labelText) });
             }
         }
 
         // 2. Shapes
         Loader
         {
-            sourceComponent: toolbar_item_component
+            sourceComponent: toolbar_gradientButton_component
             onLoaded:
             {
                 item.imageSource = "../../content/images/toolbar/shape.png"
                 item.labelText = "Shapes"
+                item.iconButtonClicked.connect(function() { toolbar_root.toolSelected(item.labelText) });
             }
         }
 
         // 3. Text
         Loader
         {
-            sourceComponent: toolbar_item_component
+            sourceComponent: toolbar_gradientButton_component
             onLoaded:
             {
                 item.imageSource = "../../content/images/toolbar/text.png"
                 item.labelText = "Text"
+                item.iconButtonClicked.connect(function() { toolbar_root.toolSelected(item.labelText) });
             }
         }
 
         // 4. Effects
         Loader
         {
-            sourceComponent: toolbar_item_component
+            sourceComponent: toolbar_gradientButton_component
             onLoaded:
             {
                 item.imageSource = "../../content/images/toolbar/effects.png"
                 item.labelText = "Effects"
+                item.iconButtonClicked.connect(function() { toolbar_root.toolSelected(item.labelText) });
             }
         }
 
         // 5. Frame
         Loader
         {
-            sourceComponent: toolbar_item_component
+            sourceComponent: toolbar_gradientButton_component
             onLoaded:
             {
                 item.imageSource = "../../content/images/toolbar/frame.png"
                 item.labelText = "Frame"
+                item.iconButtonClicked.connect(function() { toolbar_root.toolSelected(item.labelText) });
             }
         }
 
@@ -116,7 +147,7 @@ Rectangle
         // 6. Undo
         Loader
         {
-            sourceComponent: toolbar_item_component
+            sourceComponent: toolbar_simpleButton_component
             onLoaded:
             {
                 item.imageSource = "../../content/images/toolbar/undo.png"
@@ -127,7 +158,7 @@ Rectangle
         // 7. Redo
         Loader
         {
-            sourceComponent: toolbar_item_component
+            sourceComponent: toolbar_simpleButton_component
             onLoaded:
             {
                 item.imageSource = "../../content/images/toolbar/redo.png"

@@ -74,7 +74,7 @@ Rectangle
         anchors.fill: parent
         spacing: 0
 
-        IconButton
+        GradientIconButton
         {
             id: select_button
 

@@ -4,7 +4,7 @@ import QtQuick.Layouts
 import CustomComponents
 import QMLPaint
 
-// IconButton.qml
+// SimpleIconButton.qml
 Rectangle
 {
     id: button_root
@@ -14,12 +14,6 @@ Rectangle
     property string orientation
     property int iconSize
     property color labelColor
-    property color gradientLeft
-    property color gradientRight
-    property color gradientHover
-
-    property color __gradientLeft
-    property color __gradientRight
 
     signal iconButtonClicked()
 
@@ -53,21 +47,6 @@ Rectangle
             }
 
             Item { Layout.fillHeight: true }
-        }
-    }
-
-    gradient: Gradient
-    {
-        orientation: Gradient.Horizontal
-        GradientStop
-        {
-            position: 0.0
-            color: button_root.__gradientLeft
-        }
-        GradientStop
-        {
-            position: 1.0
-            color: button_root.__gradientRight
         }
     }
 
@@ -117,22 +96,19 @@ Rectangle
 
         onClicked:
         {
-            button_root.state = "selected"
             button_root.iconButtonClicked()
+        }
+        onPressed:
+        {
+            button_root.state = "pressed";
         }
         onEntered:
         {
-            if (button_root.state !== "selected")
-            {
-                button_root.state = "hovered"
-            }
+            button_root.state = "hovered";
         }
         onExited:
         {
-            if (button_root.state !== "selected")
-            {
-                button_root.state = "default";
-            }
+            button_root.state = "default";
         }
     }
 
@@ -140,25 +116,22 @@ Rectangle
     [
         State
         {
-            name: "selected"
-            PropertyChanges
-            {
-                target: button_root;
-                color: "white"
-                __gradientLeft: button_root.gradientLeft
-                __gradientRight: button_root.gradientRight
-            }
-        },
-        State
-        {
             name: "hovered"
             PropertyChanges
             {
                 target: button_root;
                 color: "#000000"
-                opacity: 0.3
-                __gradientLeft: button_root.gradientHover
-                __gradientRight: button_root.gradientHover
+                opacity: 0.4
+            }
+        },
+        State
+        {
+            name: "pressed"
+            PropertyChanges
+            {
+                target: button_root;
+                color: "#000000"
+                opacity: 0.2
             }
         },
         State
@@ -168,8 +141,6 @@ Rectangle
             {
                 target: button_root;
                 color: "transparent"
-                __gradientLeft: "transparent"
-                __gradientRight: "transparent"
             }
         }
     ]
